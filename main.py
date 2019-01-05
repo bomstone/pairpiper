@@ -109,7 +109,7 @@ body_color = '#3d5c87'
 font_color = 'white'
 
 mainWindow = Tk()
-mainWindow.title('Pair Piper v.0.0.1')
+mainWindow.title('Pair Piper v.0.0.2')
 mainWindow.iconbitmap('Graphics\Trader.ico')
 mainWindow.configure(background=body_color)
 
