@@ -103,31 +103,52 @@ ticker_list = [
     'VOLV-B'
 ]
 
-root = Tk()
-root.title('Pair Piper v.0.0.1')
+#Färgsättningsvariabler
+header_color = '#31496b'
+body_color = '#3d5c87'
+font_color = 'white'
 
-topFrame = Frame(root)
+mainWindow = Tk()
+mainWindow.title('Pair Piper v.0.0.1')
+
+w = 1200 # mainWindow width
+h = 600 # mainWindow height
+
+# get screen width and height
+ws = mainWindow.winfo_screenwidth() # width of the screen
+hs = mainWindow.winfo_screenheight() # height of the screen
+
+# calculate x and y coordinates for the mainWindow
+x = (ws/2) - (w/2)
+y = (hs/2) - (h/2)
+
+# set the dimensions of the screen and where it is placed
+mainWindow.geometry('%dx%d+%d+%d' % (w, h, x, y))
+mainWindow.configure(background='#31496b')
+
+# Skapa frames för olika innehåll
+topFrame = Frame(mainWindow, background=header_color)
 topFrame.pack(side=TOP)
-bottomFrame = Frame(root)
+bottomFrame = Frame(mainWindow)
 bottomFrame.pack(side=TOP)
 
-label_1 = Label(bottomFrame, text='Start Datum')
-label_2 = Label(bottomFrame, text='End Datum')
-start_date = Entry(bottomFrame)
-end_date = Entry(bottomFrame)
+label_1 = Label(topFrame, text='Start Date', fg=font_color, background=header_color)
+label_2 = Label(topFrame, text='End Date', fg=font_color, background=header_color)
+start_date = Entry(topFrame)
+end_date = Entry(topFrame)
 
 label_1.grid(row=0, column=0, sticky=W)
 label_2.grid(row=0, column=1, sticky=E)
-start_date.grid(row=1, column=0)
-end_date.grid(row=1, column=1)
+start_date.grid(row=1, column=0, sticky=W)
+end_date.grid(row=1, column=1, sticky=E)
 
 
-droplist1 = ttk.Combobox(bottomFrame, values=ticker_list)
-droplist2 = ttk.Combobox(bottomFrame, values=ticker_list)
+droplist1 = ttk.Combobox(topFrame, values=ticker_list)
+droplist2 = ttk.Combobox(topFrame, values=ticker_list)
 droplist1.grid(row=2, column=0)
 droplist2.grid(row=2, column=1)
 
-refresh = Button(bottomFrame, text='Uppdatera', command=run_pairs)
+refresh = Button(topFrame, text='Refresh', command=run_pairs)
 refresh.grid(columnspan=2)
 
-root.mainloop()
+mainWindow.mainloop()
