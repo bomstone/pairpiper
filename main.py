@@ -110,7 +110,7 @@ font_color = 'white'
 
 mainWindow = Tk()
 mainWindow.title('Pair Piper v.0.0.1')
-
+mainWindow.iconbitmap('Graphics\Trader.ico')
 mainWindow.configure(background=body_color)
 
 # Skapa frames för olika innehåll
