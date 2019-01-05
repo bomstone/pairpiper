@@ -104,7 +104,7 @@ ticker_list = [
 ]
 
 root = Tk()
-root.title('Pair Piper 0.0.4')
+root.title('Pair Piper v.0.0.1')
 
 topFrame = Frame(root)
 topFrame.pack(side=TOP)
