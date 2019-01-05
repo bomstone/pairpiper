@@ -18,7 +18,7 @@ from statsmodels.tsa.stattools import coint
 from statsmodels.tsa.stattools import coint, adfuller
 
 
-from pipermodules import fetch_data, zscore
+from pipermodules import fetch_data, zscore, ticker_list
 
 def run_pairs():
     
@@ -57,89 +57,45 @@ def run_pairs():
     canvas.show()
     canvas.get_tk_widget().pack()
     
-ticker_list = [
-    'ABB',
-    'ALFA',
-    'ALIV-SDB',
-    'ASSA-B',
-    'ATCO-A',
-    'ATCO-B',
-    'AXFO',
-    'BOL',
-    'DAX',
-    'ELUX-A',
-    'ELUX-B',
-    'EURSEK',
-    'GLD',
-    'HOLM-B',
-    'HUSQ-B',
-    'ICA',
-    'NCC-B',
-    'NDA-SEK',
-    'NIBE-B',
-    'OMX',
-    'PEAB-B',
-    'SAAB-B',
-    'SAND',
-    'SCA-B',
-    'SEB-A',
-    'SECU-B',
-    'SHB-A',
-    'SKA-B',
-    'SKF-A',
-    'SKF-B',
-    'SLV',
-    'SP500',
-    'SSAB-A',
-    'SSAB-B',
-    'STE-R',
-    'SWED-A',
-    'TEL2-B',
-    'TELIA',
-    'TREL-B',
-    'USDSEK',
-    'VIX',
-    'VOLV-A',
-    'VOLV-B'
-]
-
 #Färgsättningsvariabler
 header_color = '#31496b'
 body_color = '#3d5c87'
 font_color = 'white'
 
+# Definiera huvudfönstret
 mainWindow = Tk()
 mainWindow.title('Pair Piper v.0.0.2')
 mainWindow.iconbitmap('Graphics\Trader.ico')
 mainWindow.configure(background=body_color)
 
-# Skapa frames för olika innehåll
+# Definiera frames för olika innehåll
 topFrame = Frame(mainWindow, background=header_color)
-topFrame.grid(row=0, pady=10)
 bottomFrame = Frame(mainWindow)
-bottomFrame.grid(row=1)
 
+# Definiera widgets
 label_1 = Label(topFrame, text='Start Date', fg=font_color, background=header_color)
 label_2 = Label(topFrame, text='End Date', fg=font_color, background=header_color)
 label_3 = Label(topFrame, text='Ticker 1', fg=font_color, background=header_color)
 label_4 = Label(topFrame, text='Ticker 2', fg=font_color, background=header_color)
 start_date = Entry(topFrame)
 end_date = Entry(topFrame)
+droplist1 = ttk.Combobox(topFrame, values=ticker_list)
+droplist2 = ttk.Combobox(topFrame, values=ticker_list)
+refresh = Button(topFrame, text='Refresh', command=run_pairs)
 
+# Placera ut frames
+bottomFrame.grid(row=1)
+topFrame.grid(row=0, pady=10)
+
+# Placera ut widgets
 label_1.grid(row=0, column=0, padx=5, pady=8)
 label_2.grid(row=0, column=1, padx=5, pady=8)
 label_3.grid(row=0, column=2, padx=5, pady=8)
 label_4.grid(row=0, column=3, padx=5, pady=8)
 start_date.grid(row=1, column=0, padx=5, pady=8)
 end_date.grid(row=1, column=1, padx=5, pady=8)
-
-
-droplist1 = ttk.Combobox(topFrame, values=ticker_list)
-droplist2 = ttk.Combobox(topFrame, values=ticker_list)
 droplist1.grid(row=1, column=2, padx=5, pady=8)
 droplist2.grid(row=1, column=3, padx=5, pady=8)
-
-refresh = Button(topFrame, text='Refresh', command=run_pairs)
 refresh.grid(row=1, column=4, padx=5, pady=8)
 
 mainWindow.mainloop()
