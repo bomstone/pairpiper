@@ -128,9 +128,9 @@ mainWindow.configure(background='#31496b')
 
 # Skapa frames för olika innehåll
 topFrame = Frame(mainWindow, background=header_color)
-topFrame.pack(side=TOP)
+topFrame.grid(row=0)
 bottomFrame = Frame(mainWindow)
-bottomFrame.pack(side=TOP)
+bottomFrame.grid(row=1)
 
 label_1 = Label(topFrame, text='Start Date', fg=font_color, background=header_color)
 label_2 = Label(topFrame, text='End Date', fg=font_color, background=header_color)
