@@ -105,6 +105,7 @@ ticker_list = [
 
 root = Tk()
 root.title('Pair Piper v.0.0.1')
+root.iconbitmap('Graphics\Trader.ico')
 
 topFrame = Frame(root)
 topFrame.pack(side=TOP)
